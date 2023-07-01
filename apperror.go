@@ -1,39 +1,30 @@
 package apperror
 
-import "fmt"
-
-type Code uint
-
-const (
-	Unknown Code = iota + 1
-	BadRequest
-	NotFound
-	AlreadyExists
-	PermissionDenied
-	Unauthorized
-	Internal
+import (
+	"fmt"
+	"github.com/ensiouel/apperror/code"
 )
 
-var codeToMessage = map[Code]string{
-	Unknown:          "unknown",
-	BadRequest:       "bad request",
-	NotFound:         "not found",
-	AlreadyExists:    "already exists",
-	PermissionDenied: "permission denied",
-	Unauthorized:     "unauthorized",
-	Internal:         "internal",
-}
+var (
+	Unknown          = New(code.Unknown)
+	BadRequest       = New(code.BadRequest)
+	NotFound         = New(code.NotFound)
+	AlreadyExists    = New(code.AlreadyExists)
+	PermissionDenied = New(code.PermissionDenied)
+	Unauthorized     = New(code.Unauthorized)
+	Internal         = New(code.Internal)
+)
 
 type Error struct {
-	Code    Code   `json:"code"`
-	Message string `json:"message"`
-	Err     error  `json:"-"`
+	Code    code.Code `json:"code"`
+	Message string    `json:"message"`
+	Err     error     `json:"-"`
 }
 
-func New(code Code) *Error {
+func New(code code.Code) *Error {
 	return &Error{
 		Code:    code,
-		Message: codeToMessage[code],
+		Message: code.Message(),
 	}
 }
 

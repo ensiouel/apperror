@@ -2,26 +2,26 @@ package apperror
 
 import (
 	"fmt"
-	"github.com/ensiouel/apperror/code"
+	"github.com/ensiouel/apperror/codes"
 )
 
 var (
-	Unknown          = New(code.Unknown)
-	BadRequest       = New(code.BadRequest)
-	NotFound         = New(code.NotFound)
-	AlreadyExists    = New(code.AlreadyExists)
-	PermissionDenied = New(code.PermissionDenied)
-	Unauthorized     = New(code.Unauthorized)
-	Internal         = New(code.Internal)
+	Unknown          = New(codes.Unknown)
+	BadRequest       = New(codes.BadRequest)
+	NotFound         = New(codes.NotFound)
+	AlreadyExists    = New(codes.AlreadyExists)
+	PermissionDenied = New(codes.PermissionDenied)
+	Unauthorized     = New(codes.Unauthorized)
+	Internal         = New(codes.Internal)
 )
 
 type Error struct {
-	Code    code.Code `json:"code"`
-	Message string    `json:"message"`
-	Err     error     `json:"-"`
+	Code    codes.Code `json:"codes"`
+	Message string     `json:"message"`
+	Err     error      `json:"-"`
 }
 
-func New(code code.Code) *Error {
+func New(code codes.Code) *Error {
 	return &Error{
 		Code:    code,
 		Message: code.Message(),

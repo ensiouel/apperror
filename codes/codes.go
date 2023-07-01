@@ -1,4 +1,4 @@
-package code
+package codes
 
 type Code uint
 

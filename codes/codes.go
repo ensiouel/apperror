@@ -13,13 +13,13 @@ const (
 )
 
 var codeToMessage = map[Code]string{
-	Unknown:          "unknown",
+	Unknown:          "unknown error",
 	BadRequest:       "bad request",
 	NotFound:         "not found",
 	AlreadyExists:    "already exists",
 	PermissionDenied: "permission denied",
 	Unauthorized:     "unauthorized",
-	Internal:         "internal",
+	Internal:         "internal error",
 }
 
 func (code Code) Message() string {

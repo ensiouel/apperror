@@ -73,3 +73,16 @@ func (error *Error) Is(target error) bool {
 
 	return error.Code == err.Code
 }
+
+func Is(target error, code codes.Code) (*Error, bool) {
+	err, ok := target.(*Error)
+	if !ok {
+		return nil, false
+	}
+
+	if err.Code != code {
+		return nil, false
+	}
+
+	return err, true
+}
